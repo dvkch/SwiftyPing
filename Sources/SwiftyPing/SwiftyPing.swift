@@ -21,6 +21,7 @@ public protocol PingDelegate {
     /// Called when a ping response is received.
     /// - Parameter response: A `PingResponse` object representing the echo reply.
     func didReceive(response: PingResponse)
+    func didSend(identifier: UInt16, sequenceIndex: Int)
 }
 
 /// Describes all possible errors thrown within `SwiftyPing`
@@ -373,6 +374,8 @@ public class SwiftyPing: NSObject {
                 
                 guard let socket = self.socket else { return }
                 let socketError = CFSocketSendData(socket, address as CFData, icmpPackage as CFData, self.configuration.timeoutInterval)
+
+                self.delegate?.didSend(identifier: self.identifier, sequenceIndex: self.sequenceIndex)
 
                 if socketError != .success {
                     var error: PingError?
