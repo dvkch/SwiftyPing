@@ -233,11 +233,14 @@ public class SwiftyPing: NSObject {
         NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didEnterForeground), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
-    
+
+    /// A public flag to control whether to halt the pinger automatically on didEnterBackgroundNotification
+    public var allowBackgroundPinging = false
     /// A flag to determine whether the pinger was halted automatically by an app state change.
     private var autoHalted = false
     /// Called on `UIApplication.didEnterBackgroundNotification`.
     @objc private func didEnterBackground() {
+        if allowBackgroundPinging { return }
         autoHalted = true
         haltPinging(resetSequence: false)
     }
