@@ -543,8 +543,8 @@ public class SwiftyPing: NSObject {
         }
     }
     
-    private let _serial = DispatchQueue(label: "SwiftyPing internal")
-    private let _serial_property = DispatchQueue(label: "SwiftyPing internal property")
+    private let _serial = DispatchQueue(label: "SwiftyPing internal", qos: .utility)
+    private let _serial_property = DispatchQueue(label: "SwiftyPing internal property", qos: .utility)
 
     private var _killswitch = false
     private var killswitch: Bool {
