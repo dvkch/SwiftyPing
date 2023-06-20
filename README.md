@@ -31,7 +31,7 @@ Just drop the SwiftyPing.swift file to your project.  Using SwiftyPing for a Mac
 You can also use Swift Package Manager:
 
 ```swift
-.Package(url: "https://github.com/samiyr/SwiftyPing.git", branch: "master")
+.Package(url: "https://github.com/dvkch/SwiftyPing.git", branch: "main")
 ```
 
 ### Future development and contributions
